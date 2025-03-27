@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #000; }
+        .slideshow-container { position: relative; width: 80%; max-width: 800px; }
+        .slide { display: none; width: 100%; }
+        .active { display: block; }
+        .prev, .next {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            font-size: 24px; color: white; background: rgba(0, 0, 0, 0.5); border: none;
+            cursor: pointer; padding: 10px; border-radius: 50%;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <img class="slide active" src="20240926-_DSC3744.jpg">
+        <img class="slide" src="20240926-_DSC3738.jpg">
+        <img class="slide" src="_DSC3799.jpg">
+        <button class="prev" onclick="moveSlide(-1)">❮</button>
+        <button class="next" onclick="moveSlide(1)">❯</button>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+
+        function moveSlide(n) {
+            slides[slideIndex].classList.remove("active");
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            slides[slideIndex].classList.add("active");
+        }
+    </script>
+</body>
+</html>
